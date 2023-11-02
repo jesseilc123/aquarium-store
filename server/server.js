@@ -12,18 +12,11 @@ connectToDb((err) => {
         app.listen(5555, () => {
             console.log("listening on port 5555")
         })
+        db = getDb()
     }
-    db = getDb()
 })
 
-
-
+// routes
 app.get("/", (req, res) => {
-    console.log('Here')
-    res.status(200).send("hi")
+    res.json({message: "HELLO!"})
 })
-
-const exampleRouter = require('./routes/example')
-
-app.use("/example", exampleRouter)
-
