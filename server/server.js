@@ -17,6 +17,19 @@ connectToDb((err) => {
 })
 
 // routes
+app.get("/livestocks", (req, res) => {
+    let livestocks = []
+
+    db.collection("livestocks")
+        .find()
+        .forEach(livestock => livestocks.push(livestock))
+        .then(() => {
+            res.status(200).json(livestocks)
+        })
+        .catch(() => {
+            res.status(500).json({error: "Could not fetch livestock"})
+        })
+})
 app.get("/", (req, res) => {
     res.json({message: "HELLO!"})
 })
